@@ -11,27 +11,13 @@ library(kableExtra)
 library(mapproj)
 
 # data import --------------------------------------------------
-us_covid <- read_csv("data/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time.csv")
-us_names <- read_csv("data/csvData.csv")
+##us_covid <- read_csv("data/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time.csv")
+##us_names <- read_csv("data/csvData.csv")
 
 # data wrangling -----------------------------------------------
-us_covid_clean <- us_covid %>%
-    left_join(us_names, by = c("state" = "Code")) %>%
-    select("date" = submission_date,
-           "sate" = State,
-           "state_abr" = state,
-           tot_cases:pnew_death) %>%
-    mutate(date = mdy(date))
+us_covid_clean <- usa_covid_data
 
-us_covid_clean$state <- tolower(us_covid_clean$sate)
-
-mapStates <- map("state", fill = TRUE, plot = FALSE)
-
-mapdata <- fortify(mapStates)
-
-names <- strsplit(mapStates$names, ":")
-
-names <- lapply(names, function(x) x[1])
+mapdata <- usa_state_map
 
 us_cases <- us_covid_clean %>%
     select(date,
@@ -458,7 +444,6 @@ server <- function(input, output, session) {
         renderPlotly({
             options(scipen = 9999)
             if(input$measure == "Total Cases") {
-                    mapdata <- fortify(mapStates)
                     case_data <- us_covid_clean %>%
                         group_by(state) %>%
                         filter(tot_cases == max(tot_cases))
@@ -489,7 +474,6 @@ server <- function(input, output, session) {
                         config(displayModeBar = FALSE)}
 
         else if(input$measure == "Total Deaths") {
-            mapdata <- fortify(mapStates)
             death_data <- us_covid_clean %>%
                 group_by(state) %>%
                 filter(tot_death == max(tot_death))
