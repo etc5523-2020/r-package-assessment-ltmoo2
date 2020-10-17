@@ -15,9 +15,9 @@ library(mapproj)
 # us_names <- read_csv("data/csvData.csv")
 
 # data wrangling -----------------------------------------------
-us_covid_clean <- usa_covid_data 
+us_covid_clean <- covid19usa::usa_covid_data 
 
-mapdata <- usa_state_map
+mapdata <- covid19usa::usa_state_map
 
 us_cases <- us_covid_clean %>%
     select(date,
@@ -65,7 +65,7 @@ ui <- fluidPage(
             selectizeInput("state",
                            "Select State",
                            choices = toupper(unique(mapdata$region)),
-                           selected = c("CALIFORNIA", "TEXAS"),
+                           selected = c(random_states()),
                            multiple = TRUE),
             helpText("The control above can be used to bring up temporal changes for each state using the currently selected measure, both in a time series plot and an accompanying table. This input can be changed by either clicking the box above and selecting states from the dropdown menu that appears, or by double-clicking on the desired state in the adjacent map. To remove a state, simply click on the name in the box above and press backspace or delete. Note that more than one state may be selected for comparison."),
             br(),
@@ -480,7 +480,7 @@ server <- function(input, output, session) {
                 
                 death_map_data <- left_join(mapdata, death_data, by = c("region" = "state"))
                 
-                case_map <- ggplot() +
+                death_map <- ggplot() +
                     geom_polygon(data = death_map_data,
                                  aes(fill = tot_death,
                                      x = long,
@@ -499,7 +499,7 @@ server <- function(input, output, session) {
                           panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
                     ggtitle("Total COVID19 Deaths by State")
                 
-                ggplotly(case_map,
+                ggplotly(death_map,
                          tooltip = "text")%>%
                     config(displayModeBar = FALSE)}
         })
