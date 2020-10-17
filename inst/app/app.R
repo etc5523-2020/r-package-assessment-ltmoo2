@@ -56,24 +56,13 @@ ui <- fluidPage(
             helpText("This application was created as part of the Shiny Assessment for ETC5523, Semester 2 by Lachlan Thomas Moody. The purpose of this application is to allow users to explore COVID-19 related data in the continental United States of America to compare the volume of cases and deaths recorded by each of the states in the country. This is done to gain a better understanding of the virus and where it is localised within the country."),
             h3("Control Panel"),
             br(),
-            radioButtons("measure",
-                         "Select Measure",
-                         choices = c("Total Cases", "Total Deaths"),
-                         selected = "Total Cases"),
+            create_input("measure"),
             helpText("The above control can be used to adjust the output of all of the visualisations in the  application. Selecting the option 'Total Cases' will display data relating to the total amount of COID19 cases in the USA on a state-by-state basis. Whereas 'Total Deaths' will display the same data relating to the number of total deaths."),
             br(),
-            selectizeInput("state",
-                           "Select State",
-                           choices = toupper(unique(mapdata$region)),
-                           selected = c(random_states()),
-                           multiple = TRUE),
+            create_input("state"),
             helpText("The control above can be used to bring up temporal changes for each state using the currently selected measure, both in a time series plot and an accompanying table. This input can be changed by either clicking the box above and selecting states from the dropdown menu that appears, or by double-clicking on the desired state in the adjacent map. To remove a state, simply click on the name in the box above and press backspace or delete. Note that more than one state may be selected for comparison."),
             br(),
-            sliderInput("date",
-                        "Select Date",
-                        min = min(us_covid_clean$date),
-                        max = max(us_covid_clean$date),
-                        value = c(min(us_covid_clean$date),max(us_covid_clean$date))),
+            create_input("date"),
             helpText("The final control filters the time period displayed in the time series plot and table output should a specific time frame be of interest. This can be done by dragging either end of the slider to set a minimum and maximum date. Any dates included in the orignal data set may be selected."),
             width = 2
             
@@ -408,13 +397,7 @@ server <- function(input, output, session) {
                        AVERAGE = average) %>%
                 filter(DATE >= input$date[1] & DATE <= input$date[2])
             
-            combined %>%
-                kable(digits = 0,
-                      format.args = list(big.mark = ","),
-                      caption = "State Cases Compared to National Average") %>%
-                row_spec(0,background = "black") %>%
-                kable_styling(bootstrap_options = c("border")) %>%
-                scroll_box(height = "500px")}
+            present_table(combined, "cases")}
         
         else if(input$measure == "Total Deaths"){
             state_deaths <- us_deaths %>%
@@ -430,13 +413,7 @@ server <- function(input, output, session) {
                        AVERAGE = average) %>%
                 filter(DATE >= input$date[1] & DATE <= input$date[2])
             
-            combined %>%
-                kable(digits = 0,
-                      format.args = list(big.mark = ","),
-                      caption = "State Deaths Compared to National Average") %>%
-                row_spec(0,background = "black") %>%
-                kable_styling(bootstrap_options = c("border"))%>%
-                scroll_box(height = "500px")
+            present_table(combined, "deaths")
         }
     }
     
