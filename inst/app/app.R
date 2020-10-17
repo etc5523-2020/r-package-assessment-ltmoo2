@@ -15,9 +15,9 @@ library(mapproj)
 ##us_names <- read_csv("data/csvData.csv")
 
 # data wrangling -----------------------------------------------
-us_covid_clean <- usa_covid_data
+us_covid_clean <- covid19usa::usa_covid_data
 
-mapdata <- usa_state_map
+mapdata <- covid19usa::usa_state_map
 
 us_cases <- us_covid_clean %>%
     select(date,
@@ -310,19 +310,7 @@ server <- function(input, output, session) {
     output$myplot <-
         renderPlotly({
             if(input$measure == "Total Cases") {
-            us_cases <- us_covid_clean %>%
-                select(date,
-                       state,
-                       tot_cases) %>%
-                filter(date >= input$date[1] & date <= input$date[2])
-
-            avg_cases <-
-                us_cases %>%
-                group_by(date) %>%
-                summarise(tot_cases = mean(tot_cases)) %>%
-                mutate(state = "average",
-                       tot_cases = round(tot_cases, digits = 0))
-
+                
             timeseries <- bind_rows(us_cases, avg_cases)
 
             plot <- timeseries %>%
@@ -351,19 +339,7 @@ server <- function(input, output, session) {
                 config(displayModeBar = FALSE) }
 
             else if(input$measure == "Total Deaths"){
-                us_deaths <- us_covid_clean %>%
-                    select(date,
-                           state,
-                           tot_death) %>%
-                    filter(date >= input$date[1] & date <= input$date[2])
-
-                avg_deaths <-
-                    us_deaths %>%
-                    group_by(date) %>%
-                    summarise(tot_death = mean(tot_death)) %>%
-                    mutate(state = "average",
-                           tot_death = round(tot_death, digits = 0))
-
+                
                 timeseries <- bind_rows(us_deaths, avg_deaths)
 
                 plot <- timeseries %>%
