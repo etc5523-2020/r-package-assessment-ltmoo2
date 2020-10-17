@@ -59,10 +59,10 @@ ui <- fluidPage(
             create_input("measure"),
             helpText("The above control can be used to adjust the output of all of the visualisations in the  application. Selecting the option 'Total Cases' will display data relating to the total amount of COID19 cases in the USA on a state-by-state basis. Whereas 'Total Deaths' will display the same data relating to the number of total deaths."),
             br(),
-            create_input("state"),
+            create_input("state", usa_state_map),
             helpText("The control above can be used to bring up temporal changes for each state using the currently selected measure, both in a time series plot and an accompanying table. This input can be changed by either clicking the box above and selecting states from the dropdown menu that appears, or by double-clicking on the desired state in the adjacent map. To remove a state, simply click on the name in the box above and press backspace or delete. Note that more than one state may be selected for comparison."),
             br(),
-            create_input("date"),
+            create_input("date", usa_covid_data),
             helpText("The final control filters the time period displayed in the time series plot and table output should a specific time frame be of interest. This can be done by dragging either end of the slider to set a minimum and maximum date. Any dates included in the orignal data set may be selected."),
             width = 2
             

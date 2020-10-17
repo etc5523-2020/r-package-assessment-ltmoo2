@@ -4,16 +4,18 @@
 \alias{create_input}
 \title{Create inputs for shiny application}
 \usage{
-create_input(input)
+create_input(input, data)
 }
 \arguments{
 \item{input}{The variable chosen for the input as a character vector. Can be \code{"measure"}, \code{"state"}, or \code{"date"}.}
+
+\item{data}{The data set for the input to be drawn from. Can be \code{usa_covid_data} or \code{usa_state_map}.}
 }
 \value{
 A shiny control widget used to specify inputs for the visualisations in the application
 }
 \description{
-Create chosen shiny inputs for the different variables contained in the data set \code{usa_covid_data} and \code{usa_state_map}.
+Create chosen shiny inputs for the different variables contained in a data set.
 }
 \examples{
 create_input("measure")
