@@ -66,6 +66,11 @@ launch_app()
 
 ## Package functions
 
+The four functions below were created in order to improve logic of the
+aforementioned shiny application. The first function, `random_states`
+creates a vector of two randomly selected states names from a supplied
+data set, in this case `usa_state_map`.
+
 ``` r
 set.seed(1)
 library(covid19usa)
@@ -73,9 +78,21 @@ random_states(usa_state_map)
 #> [1] "CALIFORNIA"     "SOUTH CAROLINA"
 ```
 
+This function was created and implemented within the `create_input`
+function in order to automatically select two different US states for
+comparison each time the application is launched In this example, by
+default the application will display comparisons for `CALIFORNIA` and
+`SOUTH CAROLINA`. In addition, this function is used to create all
+adjustable inputs for the application.
+
 ``` r
 create_input("state", usa_state_map)
 ```
+
+Thirdly, on the server side, the function `average_measure` can be used
+to produce a summary count of either `tot_cases` or `tot_death` for
+COVID19 in the USA. This is used to construct the timeseries plot seen
+in the application.
 
 ``` r
 library(dplyr)
@@ -93,6 +110,10 @@ example
 #> 4 2020-09-25    116820 average
 #> 5 2020-09-24    115977 average
 ```
+
+The final function, `present_table`, converts any data frame into a
+stylish and presentable table using the `kableExtra` package and can be
+seen alongside the timeseries chart in the application.
 
 ``` r
 library(kableExtra)
