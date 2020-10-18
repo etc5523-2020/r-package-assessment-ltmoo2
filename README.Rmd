@@ -28,7 +28,7 @@ The goal of covid19usa is to embed the previously created shiny application for 
 <!-- install.packages("covid19usa") -->
 <!-- ``` -->
 
-And the development version from [GitHub](https://github.com/) with:
+The development version of covid19usa can be installed directly from [GitHub](https://github.com/etc5523-2020/r-package-assessment-ltmoo2) with:
 
 ``` r
 # install.packages("devtools")
@@ -36,25 +36,9 @@ devtools::install_github("etc5523-2020/r-package-assessment-ltmoo2")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The application can be launched using the following code:
 
-```{r example}
+```{r example, eval=FALSE}
 library(covid19usa)
-## basic example code
+launch_app()
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
