@@ -305,12 +305,7 @@ server <- function(input, output, session) {
                            tot_cases) %>%
                     filter(date >= input$date[1] & date <= input$date[2])
                 
-                avg_cases <-
-                    us_cases %>%
-                    group_by(date) %>%
-                    summarise(tot_cases = mean(tot_cases)) %>%
-                    mutate(state = "average",
-                           tot_cases = round(tot_cases, digits = 0))
+                avg_cases <- average_measure(us_cases, "tot_cases")
                 
                 timeseries <- bind_rows(us_cases, avg_cases)
                 
@@ -346,12 +341,7 @@ server <- function(input, output, session) {
                            tot_death) %>%
                     filter(date >= input$date[1] & date <= input$date[2])
                 
-                avg_deaths <-
-                    us_deaths %>%
-                    group_by(date) %>%
-                    summarise(tot_death = mean(tot_death)) %>%
-                    mutate(state = "average",
-                           tot_death = round(tot_death, digits = 0))
+                avg_deaths <- average_measure(us_deaths, "tot_death")
                 
                 timeseries <- bind_rows(us_deaths, avg_deaths)
                 

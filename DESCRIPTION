@@ -17,4 +17,7 @@ Depends:
 Imports: 
     shiny,
     kableExtra,
-    magrittr
+    magrittr,
+    dplyr
+Suggests: 
+    testthat
