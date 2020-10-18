@@ -11,8 +11,8 @@
 #'
 #' @examples
 #' create_input("measure")
-#' create_input("state")
-#' create_input("date")
+#' create_input("state", usa_state_map)
+#' create_input("date", usa_covid_data)
 #' 
 create_input <- function(input, data){
   if(input == "measure"){
@@ -24,7 +24,7 @@ create_input <- function(input, data){
     shiny::selectizeInput("state",
                    "Select State",
                    choices = toupper(unique(data$region)),
-                   selected = c(random_states()),
+                   selected = c(random_states(data)),
                    multiple = TRUE)
   } else if(input == "date"){
     shiny::sliderInput("date",

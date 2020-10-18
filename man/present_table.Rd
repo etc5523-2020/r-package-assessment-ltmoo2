@@ -7,7 +7,7 @@
 present_table(data, measure)
 }
 \arguments{
-\item{data}{The data table to be formatted}
+\item{data}{The data set to be formatted}
 
 \item{measure}{The measure chosen for the heading of the table as a character vector, can be \code{"cases"} or \code{"deaths"}}
 }
@@ -18,7 +18,7 @@ A formatted kable of the original data set entered
 Creates a formatted and styled table to display COVID19 data using the kableExtra package
 }
 \examples{
-present_table(combined, "cases")
-present_table(combined, "deaths")
+present_table(usa_covid_data, "cases")
+present_table(usa_covid_data, "deaths")
 
 }

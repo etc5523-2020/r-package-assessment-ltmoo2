@@ -4,15 +4,18 @@
 \alias{random_states}
 \title{Compare two states}
 \usage{
-random_states()
+random_states(data)
+}
+\arguments{
+\item{data}{The data set to be sampled from.}
 }
 \value{
-A collection of two state names returned from the \code{usa_state_map} data set.
+A collection of two state names returned from the a data set.
 }
 \description{
 This function is used in the shiny application to provide two random state names each time it is loaded for the default values.
 }
 \examples{
-random_states()
+random_states(usa_state_map)
 
 }
