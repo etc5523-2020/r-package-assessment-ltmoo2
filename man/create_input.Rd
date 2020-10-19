@@ -17,9 +17,3 @@ A shiny control widget used to specify inputs for the visualisations in the appl
 \description{
 Create chosen shiny inputs for the different variables contained in a data set.
 }
-\examples{
-create_input("measure")
-create_input("state", usa_state_map)
-create_input("date", usa_covid_data)
-
-}

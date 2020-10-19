@@ -387,7 +387,7 @@ server <- function(input, output, session) {
                        AVERAGE = average) %>%
                 filter(DATE >= input$date[1] & DATE <= input$date[2])
             
-            present_table(combined, "cases")}
+            present_table(combined, "cases", paste("State cases compared to national average"))}
         
         else if(input$measure == "Total Deaths"){
             state_deaths <- us_deaths %>%
@@ -403,7 +403,7 @@ server <- function(input, output, session) {
                        AVERAGE = average) %>%
                 filter(DATE >= input$date[1] & DATE <= input$date[2])
             
-            present_table(combined, "deaths")
+            present_table(combined, "deaths", paste("State deaths compared to national average"))
         }
     }
     

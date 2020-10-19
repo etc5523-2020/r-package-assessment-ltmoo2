@@ -51,6 +51,7 @@ The application can then be launched using the following code:
 
 ```{r launch, eval=FALSE}
 library(covid19usa)
+
 launch_app()
 ```
 
@@ -59,6 +60,7 @@ The four functions below were created in order to improve logic of the aforement
 ```{r random}
 set.seed(1)
 library(covid19usa)
+
 random_states(usa_state_map)
 ```
 This function was created and implemented within the `create_input` function in order to automatically select two different US states for comparison each time the application is launched In this example, by default the application will display comparisons for `CALIFORNIA` and `SOUTH CAROLINA`. In addition, this function is used to create all adjustable inputs for the application.
@@ -71,6 +73,7 @@ Thirdly, on the server side, the function `average_measure` can be used to produ
 
 ```{r average}
 library(dplyr)
+
 example <- average_measure(usa_covid_data, "tot_cases") %>%
   arrange(-tot_cases) %>%
   head(5)
@@ -80,8 +83,11 @@ example
 The final function, `present_table`, converts any data frame into a stylish and presentable table using the `kableExtra` package and can be seen alongside the timeseries chart in the application.
 
 ```{r present}
-library(kableExtra)
-present_table(example, "cases")
+library(dplyr)
 
+usa_covid_data %>%
+  select(date, state, tot_cases)%>%
+  filter(state == "colorado") %>%
+present_table("cases", "Total cases in Colorado per day")
 ```
 

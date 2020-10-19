@@ -9,10 +9,6 @@
 #' 
 #' @export
 #'
-#' @examples
-#' create_input("measure")
-#' create_input("state", usa_state_map)
-#' create_input("date", usa_covid_data)
 #' 
 create_input <- function(input, data){
   if(input == "measure"){
