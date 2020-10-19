@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/etc5523-2020/r-package-assessment-ltmoo2/workflows/R-CMD-check/badge.svg)](https://github.com/etc5523-2020/r-package-assessment-ltmoo2/actions)
 <!-- badges: end -->
 
 The goal of **covid19usa** is to embed the previously created shiny
