@@ -20,4 +20,7 @@ Imports:
     magrittr,
     dplyr
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
