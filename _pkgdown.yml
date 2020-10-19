@@ -1,4 +1,21 @@
 template:
   params:
     bootswatch: lumen
+reference:
+- title: "Viewing the shiny application"
+- contents: 
+  - launch_app
+- title: "User interface functions"
+- contents:
+  - create_input
+  - random_states
+- title: "Server-side functions"
+- contents:
+  - average_measure
+  - present_table
+- title: "Datasets"
+- contents:
+  - usa_covid_data
+  - usa_state_map
+
     
