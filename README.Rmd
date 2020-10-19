@@ -89,6 +89,9 @@ library(dplyr)
 usa_covid_data %>%
   select(date, state, tot_cases)%>%
   filter(state == "colorado") %>%
+  head(5) %>%
 present_table("cases", "Total cases in Colorado per day")
 ```
 
+## Additional information
+For more detailed instructions on how to use the package and the functions contained within it, please consult the [vignette](https://etc5523-2020.github.io/r-package-assessment-ltmoo2/)
