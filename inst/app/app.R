@@ -379,10 +379,10 @@ server <- function(input, output, session) {
             state_cases <- us_cases %>%
                 filter(state %in% paste(tolower(input$state))) %>%
                 mutate(state = toupper(state)) %>%
-                pivot_wider(names_from = state, values_from = tot_cases)
+                tidyr::pivot_wider(names_from = state, values_from = tot_cases)
             
             national_cases <- avg_cases %>%
-                pivot_wider(names_from = state, values_from = tot_cases)
+                tidyr::pivot_wider(names_from = state, values_from = tot_cases)
             
             combined <- left_join(state_cases, national_cases) %>%
                 rename(DATE = date,
@@ -395,10 +395,10 @@ server <- function(input, output, session) {
             state_deaths <- us_deaths %>%
                 filter(state %in% paste(tolower(input$state))) %>%
                 mutate(state = toupper(state)) %>%
-                pivot_wider(names_from = state, values_from = tot_death)
+                tidyr::pivot_wider(names_from = state, values_from = tot_death)
             
             national_deaths <- avg_deaths %>%
-                pivot_wider(names_from = state, values_from = tot_death)
+                tidyr::pivot_wider(names_from = state, values_from = tot_death)
             
             combined <- left_join(state_deaths, national_deaths) %>%
                 rename(DATE = date,
