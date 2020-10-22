@@ -1,6 +1,7 @@
 # libraries ----------------------------------------------------
+library(covid19usa)
 library(shiny)
-library(tidyverse)
+library(dplyr)
 library(ggplot2)
 library(maps)
 library(readxl)
