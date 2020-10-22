@@ -25,7 +25,8 @@ Imports:
     lubridate,
     scales,
     plotly,
-    mapproj
+    mapproj,
+    tidyr
 Suggests: 
     testthat,
     knitr,

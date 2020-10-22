@@ -2,6 +2,7 @@
 library(covid19usa)
 library(shiny)
 library(dplyr)
+library(tidyr)
 library(ggplot2)
 library(maps)
 library(readxl)
